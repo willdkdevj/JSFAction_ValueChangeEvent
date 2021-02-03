@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	  xmlns:f="http://xmlns.jcp.org/jsf/core"
+	  xmlns:h="http://xmlns.jcp.org/jsf/html"
+	  xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+<h:head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>Action Events</title>
+</h:head>
+<body>
+
+	<h:form id="formAction" acceptcharset="ISO-8859-1" lang="pt">
+		<h:panelGrid columns="3">
+			<h:outputText value="Continente "/>
+			<h:selectOneMenu value="#{form.siglaContinente}" >
+				<f:selectItem itemLabel="Selecione" noSelectionOption="true"/>
+				<f:selectItems value="#{form.continentes}" var="c" itemValue="#{c.sigla}" itemLabel="#{c.nome}" />
+			</h:selectOneMenu>
+			<h:commandButton value="Login" actionListener="#{form.carregarPaises}" />
+			
+			<h:outputText value="País "/>
+			<h:selectOneMenu value="#{form.siglaPais}" valueChangeListener="#{form.carregarRegioes}" onchange="submit();">
+				<f:selectItem itemLabel=" - " noSelectionOption="true"/>
+				<f:selectItems value="#{form.paises}" var="p" itemLabel="#{p.nome}" itemValue="#{p.sigla}"/>
+			</h:selectOneMenu>
+		</h:panelGrid>
+		
+		<h:panelGrid columns="2">
+			<h:outputText value="Região "/>
+			<h:selectOneMenu value="#{form.siglaRegiao}" valueChangeListener="#{form.carregarEstados}" onchange="submit();">
+				<f:selectItem itemLabel="Selecione" noSelectionOption="true"/>
+				<f:selectItems value="#{form.regioes}" var="r" itemValue="#{r.sigla}" itemLabel="#{r.nome}" />
+			</h:selectOneMenu>
+			
+			<h:outputText value="Estado "/>
+			<h:selectOneMenu value="#{form.siglaEstado}">
+				<f:selectItem itemLabel=" - " noSelectionOption="true"/>
+				<f:selectItems value="#{form.estados}" var="e" itemLabel="#{e.nome}" itemValue="#{e.sigla}"/>
+			</h:selectOneMenu>
+		</h:panelGrid>
+		<hr />
+		<br />
+		
+		
+	</h:form>
+</body>
+</html>
